@@ -17,18 +17,31 @@ class Assessment {
   }
   
   buildQuestions() {
-    Dimensions.forEach( tag => {
-      i = 0
+    Dimensions.forEach( tag, i => {
+      j = 1
       while (tag.answer.length != 0) {
-        this.questions.push({ 
-          'tag1': tag.name,  
-          'answer1': tag.answer,
-          'tag2': Dimensions[i+1].name,
-          'answer2': Dimensions[i++].answers[0]
+        [1,2].forEach( () => {
+          this.questions.push({ 
+            'tag1': tag.name,  
+            'answer1': tag.answer[length - 1],
+            'tag2': Dimensions[i + j].name,
+            'answer2': Dimensions[i + j].answers[length - 1]
+          })
+          tag.answers.pop()
+          Dimensions[i + j].answers.pop()
         })
+       
+        // this.questions.push({ 
+        //   'tag1': tag.name,  
+        //   'answer1': tag.answer[length - 1],
+        //   'tag2': Dimensions[i + j].name,
+        //   'answer2': Dimensions[i + j].answers[length - 1]
+        // })
+        // tag.answers.pop()
+        // Dimensions[i + j].answers.pop()
+       
+        j++
       }
-
-
 
       // tag.answers.forEach( ans => {
       //   console.log(ans)
@@ -39,7 +52,6 @@ class Assessment {
       //     'tag2': Dimensions[i+1]
       //   })
       // })
-
 
     })
   }
