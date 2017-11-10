@@ -10,10 +10,10 @@ function countInArray(array, what) {
   return array.filter(item => item == what).length;
 }
 
-
 describe('The Assessment', () => {
   var model = new Assessment
   model.buildQuestions()
+  model.initializeResults()  
 
   it('should have 30 questions', () => {
     expect(model.questions).toHaveLength(30);
@@ -40,10 +40,17 @@ describe('The Assessment', () => {
   });
   describe('when completed', () => {
     it('should provide the results as an object', () => {
-      expect('this test').toBe('failing'); 
+      expect(model.results).toEqual(jasmine.objectContaining({})); 
     });
     it('should represent the results based on 6 dimensions', () => {
-      expect('this test').toBe('failing'); 
+      expect(model.results).toEqual(jasmine.objectContaining({
+        Adaptive: expect.any(Number),
+        Integrity: expect.any(Number),
+        Collaborative: expect.any(Number),
+        Result: expect.any(Number),
+        Customer: expect.any(Number),
+        Detail: expect.any(Number),
+      })); 
     });
   });
 });

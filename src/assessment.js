@@ -36,6 +36,10 @@ class Assessment {
     return shuffle(this.questions)
   }
 
+  answer(selectedTag) {
+    if (selectedTag in this.results) { this.results[selectedTag] += 1 }
+  }
+
 }
 
 export default Assessment;
